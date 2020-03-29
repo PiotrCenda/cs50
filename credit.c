@@ -22,6 +22,11 @@ int main(void)
 
     for (a = 0; a < dlugosc; a++)
     {
+        if (a == dlugosc - 2)
+        {
+            poczatek = numer;
+        }
+
         if (a % 2 == 1)
         {
             if (numer % 10 > 4)
@@ -40,16 +45,13 @@ int main(void)
         numer = numer / 10;
     }
 
-    numer = temp;
-    poczatek = numer % (10 * (dlugosc - 2));
-
     if ((dlugosc == 15 || dlugosc == 16 || dlugosc == 13) && suma % 10 == 0)
     {
         if (dlugosc == 15 && (poczatek == 34 || poczatek == 37))
         {
             printf("AMEX\n");
         }
-        else if (poczatek % 10 == 4 && (dlugosc == 13 || dlugosc == 16))
+        else if (poczatek / 10 == 4 && (dlugosc == 13 || dlugosc == 16))
         {
             printf("VISA\n");
         }
