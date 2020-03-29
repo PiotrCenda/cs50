@@ -9,15 +9,15 @@ int main(void)
     {
         wys = get_int("Height: ");
     }
-    while(wys>8 || wys<1);
+    while (wys > 8 || wys < 1);
 
     int i, j;
 
-    for(i = 0; i < wys; i++)
+    for (i = 0; i < wys; i++)
     {
-        for(j = 0; j < wys; j++)
+        for (j = 0; j < wys; j++)
         {
-            if(j >= wys - i - 1)
+            if (j >= wys - i - 1)
             {
                 printf("#");
             }
