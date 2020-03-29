@@ -8,13 +8,13 @@ int main(void)
         wys = get_int("Height: ");
     }while(wys>8 || wys<1);
 
-    int i, j, k;
+    int i, j;
 
-    for(i=1; i<wys+1; i++)
+    for(i=0; i<wys; i++)
     {
-        for(j=0; j<(wys*2); j++)
+        for(j=0; j<wys+i+1; j++)
         {
-            if((j>=wys-i && j<=wys) || (j<=wys+i-1 && j>=wys))
+            if((j>=wys-i-1 && j<=wys) || j>=wys)
             {
                 printf("#");
             }
