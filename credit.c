@@ -4,41 +4,44 @@
 
 int main(void)
 {
-    int suma, sumap, suman, dlugosc, poczatek;
+    int suma, sumap, dlugosc, poczatek, a;
     long numer, temp;
     numer = get_long("Number: ");
     temp = numer;
     dlugosc = 0;
     sumap = 0;
-    suman = 0;
     suma = 0;
 
     while (numer > 0)
     {
         dlugosc++;
-
-        if (dlugosc % 2 == 0)
-        {
-            sumap += numer % 10;
-        }
-        else
-        {
-            suman += numer % 10;
-        }
-
         numer = numer / 10;
     }
 
-    poczatek = temp / (10 * (dlugosc - 2));
+    numer = temp;
 
-    if (dlugosc % 2 == 0)
+    for (a = 0; a < dlugosc; a++)
     {
-        suma = sumap + suman * 2;
+        if (a % 2 == 1)
+        {
+            if (numer % 10 > 4)
+            {
+                suma = suma + 1 + (numer % 5) * 2;
+            }
+            else
+            {
+                suma += (numer % 10) * 2;
+            }
+        }
+        else
+        {
+            suma += numer % 10;
+        }
+        numer = numer / 10;
     }
-    else
-    {
-        suma = suman + sumap * 2;
-    }
+
+    numer = temp;
+    poczatek = numer % (10 * (dlugosc - 2));
 
     if ((dlugosc == 15 || dlugosc == 16 || dlugosc == 13) && suma % 10 == 0)
     {
