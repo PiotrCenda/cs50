@@ -11,6 +11,7 @@ int main(void)
     dlugosc = 0;
     sumap = 0;
     suman = 0;
+    suma = 0;
 
     while (numer > 0)
     {
