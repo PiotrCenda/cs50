@@ -8,7 +8,7 @@ int main(void)
     float zlote;
     do
     {
-       zlote = get_float("Change owed: ");
+        zlote = get_float("Change owed: ");
     }
     while (zlote < 0);
 
@@ -21,7 +21,7 @@ int main(void)
     }
     if (grosze >= 10)
     {
-        wynik += grosze/10;
+        wynik += grosze / 10;
         grosze = grosze % 10;
     }
     if (grosze >= 5)
