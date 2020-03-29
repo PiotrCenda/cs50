@@ -5,7 +5,13 @@
 int main(void)
 {
     int wynik = 0;
-    float zlote = get_float("Change owed: ");
+    float zlote;
+    do
+    {
+       zlote = get_float("Change owed: ");
+    }
+    while (zlote < 0);
+
     int grosze = round(zlote * 100);
 
     if (grosze >= 25)
