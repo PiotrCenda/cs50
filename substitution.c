@@ -3,6 +3,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 int main(int argc, string argv[])
 {
@@ -30,13 +31,13 @@ int main(int argc, string argv[])
         if (slowo[i] >= 65 && slowo[i] <= 90)
         {
             pom = slowo[i] - 65;
-            printf("%c", s[pom]);
+            printf("%c", tolower(s[pom]));
         }
 
         else if (slowo[i] >= 97 && slowo[i] <= 122)
         {
             pom = slowo[i] - 97;
-            printf("%c", s[pom]);
+            printf("%c", toupper(s[pom]));
         }
 
         else
