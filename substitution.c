@@ -22,7 +22,7 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    for(int k = 0; k < n; k++)
+    for (int k = 0; k < n; k++)
     {
         if ((s[k] < 65 || s[k] > 90) && (s[k] < 97 || s[k] > 122))
         {
@@ -31,20 +31,20 @@ int main(int argc, string argv[])
         }
     }
 
-    for(int k = 0; k < n; k++)
+    for (int k = 0; k < n; k++)
     {
         if (s[k] <= 90)
         {
-            spr[s[k]-65]++;
+            spr[s[k] - 65]++;
         }
 
         else
         {
-            spr[s[k]-97]++;
+            spr[s[k] - 97]++;
         }
     }
 
-    for(int k = 0; k < n; k++)
+    for (int k = 0; k < n; k++)
     {
         if (spr[k] != 1)
         {
