@@ -20,6 +20,10 @@ int main(void)
         }
         else if (tekst[i] == 33 || tekst[i] == 63 || tekst[i] == 46)
         {
+            if(i == n - 1)
+            {
+                slowa++;
+            }
             zdania++;
         }
     }
