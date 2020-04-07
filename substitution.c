@@ -14,17 +14,39 @@ int main(int argc, string argv[])
     }
 
     string s = argv[1], slowo;
-    int n = strlen(s), pom;
+    int n = strlen(s), pom, spr[26] = {0};
 
     if (n != 26)
     {
         printf("Key must contain 26 characters.\n");
         return 1;
     }
-    
+
     for(int k = 0; k < n; k++)
     {
         if ((s[k] < 65 || s[k] > 90) && (s[k] < 97 || s[k] > 122))
+        {
+            printf("Usage: ./caesar key\n");
+            return 1;
+        }
+    }
+
+    for(int k = 0; k < n; k++)
+    {
+        if (s[k] <= 90)
+        {
+            spr[s[k]-65]++;
+        }
+
+        else
+        {
+            spr[s[k]-97]++;
+        }
+    }
+
+    for(int k = 0; k < n; k++)
+    {
+        if (spr[k] != 1)
         {
             printf("Usage: ./caesar key\n");
             return 1;
