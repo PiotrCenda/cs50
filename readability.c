@@ -19,7 +19,7 @@ int main(void)
         {
             litery++;
         }
-        else if (tekst[i] == 32 || tekst[i] == 44)
+        else if (tekst[i] == 32)
         {
             slowa++;
         }
