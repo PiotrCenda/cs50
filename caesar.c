@@ -32,13 +32,13 @@ int main(int argc, string argv[])
     {
         if (slowo[i] >= 65 && slowo[i] <= 90)
         {
-            pom = slowo[i] - 65 + (key % 26);
+            pom = (slowo[i] - 65 + key) % 26;
             printf("%c", 65 + pom);
         }
 
         else if (slowo[i] >= 97 && slowo[i] <= 122)
         {
-            pom = slowo[i] - 97 + (key % 26);
+            pom = (slowo[i] - 97 + key) % 26;
             printf("%c", 97 + pom);
         }
 
