@@ -21,6 +21,15 @@ int main(int argc, string argv[])
         printf("Key must contain 26 characters.\n");
         return 1;
     }
+    
+    for(int k = 0; k < n; k++)
+    {
+        if ((s[k] < 65 || s[k] < 90) && (s[k] < 97 || s[k] > 122))
+        {
+            printf("Usage: ./caesar key\n");
+            return 1;
+        }
+    }
 
     slowo = get_string("plaintext:  ");
     n = strlen(slowo);
