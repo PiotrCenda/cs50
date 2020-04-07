@@ -6,7 +6,7 @@
 int main(void)
 {
     string tekst = get_string("Text: ");
-    int slowa = 0, litery = 0, zdania = 0;
+    int slowa = 0, litery = 0, zdania = 1;
 
     for (int i = 0, n = strlen(tekst); i < n; i++)
     {
