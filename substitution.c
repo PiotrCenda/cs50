@@ -24,7 +24,7 @@ int main(int argc, string argv[])
     
     for(int k = 0; k < n; k++)
     {
-        if ((s[k] < 65 || s[k] < 90) && (s[k] < 97 || s[k] > 122))
+        if ((s[k] < 65 || s[k] > 90) && (s[k] < 97 || s[k] > 122))
         {
             printf("Usage: ./caesar key\n");
             return 1;
