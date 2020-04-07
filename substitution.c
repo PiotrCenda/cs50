@@ -31,13 +31,13 @@ int main(int argc, string argv[])
         if (slowo[i] >= 65 && slowo[i] <= 90)
         {
             pom = slowo[i] - 65;
-            printf("%c", tolower(s[pom]));
+            printf("%c", toupper(s[pom]));
         }
 
         else if (slowo[i] >= 97 && slowo[i] <= 122)
         {
             pom = slowo[i] - 97;
-            printf("%c", toupper(s[pom]));
+            printf("%c", tolower(s[pom]));
         }
 
         else
