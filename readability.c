@@ -6,7 +6,12 @@
 int main(void)
 {
     string tekst = get_string("Text: ");
-    int slowa = 0, litery = 0, zdania = 1;
+    int slowa = 0, litery = 0, zdania = 0;
+    
+    if ((tekst[0] >= 65 && tekst[0] <= 90) || (tekst[0] >= 97 && tekst[0] <= 122))
+        {
+            zdania++;
+        }
 
     for (int i = 0, n = strlen(tekst); i < n; i++)
     {
