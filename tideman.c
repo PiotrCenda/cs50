@@ -170,7 +170,7 @@ void sort_pairs()
             i++;
         }
 
-        while (preferences[pairs[j].winner][pairs[j].loser] < pivot)
+        while (preferences[pairs[j].winner][pairs[j].loser] > pivot)
         {
             j--;
         }
