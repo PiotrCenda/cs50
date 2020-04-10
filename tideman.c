@@ -151,7 +151,8 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(int lewo, int prawo)
 {
-    //QUICKSORT
+    int lewo lewo;
+    int localRight = right;  //QUICKSORT
     if (prawo <= lewo)
     {
         return;
