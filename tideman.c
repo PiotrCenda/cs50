@@ -25,12 +25,14 @@ pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
 int candidate_count;
+int lewo;
+int prawo;
 
 // Function prototypes
 bool vote(int rank, string name, int ranks[]);
 void record_preferences(int ranks[]);
 void add_pairs(void);
-void sort_pairs(int lewo, int prawo);
+void sort_pairs();
 void lock_pairs(void);
 void print_winner(void);
 
@@ -91,7 +93,9 @@ int main(int argc, string argv[])
     }
 
     add_pairs();
-    sort_pairs(0, pair_count - 1);
+    lewo = 0;
+    prawo = pair_count - 1;
+    sort_pairs();
     lock_pairs();
     print_winner();
     return 0;
@@ -149,10 +153,9 @@ void add_pairs(void)
 }
 
 // Sort pairs in decreasing order by strength of victory
-void sort_pairs(int lewo, int prawo)
+void sort_pairs()
 {
-    int lewo lewo;
-    int localRight = right;  //QUICKSORT
+    //QUICKSORT
     if (prawo <= lewo)
     {
         return;
@@ -182,6 +185,9 @@ void sort_pairs(int lewo, int prawo)
         }
     }
     while (i <= j);
+
+    prawo = j;
+    lewo = i;
 
     if (lewo < j)
     {
