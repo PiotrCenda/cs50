@@ -156,7 +156,7 @@ void sort_pairs(int lewo, int prawo)
     {
         return;
     }
-    
+
     int i = lewo, j = prawo, pivot = preferences[pairs[(lewo + prawo) >> 1].winner][pairs[(lewo + prawo) >> 1].loser];
 
     do
@@ -179,7 +179,7 @@ void sort_pairs(int lewo, int prawo)
             pairs[j].winner = win;
             pairs[j].loser = los;
         }
-    } 
+    }
     while (i <= j);
 
     if (lewo < j)
