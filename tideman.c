@@ -157,14 +157,14 @@ void sort_pairs()
     {
         for (int j = 0; j < pair_count; j++)
         {
-           if (preferences[pairs[i].winner][pairs[i].loser] > preferences[pairs[j].winner][pairs[j].loser])
-           {
-               int win = pairs[i].winner, los = pairs[i].loser;
+            if (preferences[pairs[i].winner][pairs[i].loser] > preferences[pairs[j].winner][pairs[j].loser])
+            {
+                int win = pairs[i].winner, los = pairs[i].loser;
                 pairs[i].winner = pairs[j].winner;
                 pairs[i].loser = pairs[j].loser;
                 pairs[j].winner = win;
                 pairs[j].loser = los;
-           }
+            }
         }
     }
     return;
@@ -201,7 +201,7 @@ void lock_pairs(void)
     {
         cycle = false;
 
-        check_cycles(pairs[i].loser , i);
+        check_cycles(pairs[i].loser, i);
 
         if (cycle == false)
         {
