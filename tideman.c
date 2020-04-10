@@ -25,8 +25,7 @@ pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
 int candidate_count;
-int lewo;
-int prawo;
+bool cycle = false;
 
 // Function prototypes
 bool vote(int rank, string name, int ranks[]);
@@ -35,6 +34,7 @@ void add_pairs(void);
 void sort_pairs();
 void lock_pairs(void);
 void print_winner(void);
+void check_cycles(int n, int c);
 
 int main(int argc, string argv[])
 {
@@ -93,8 +93,6 @@ int main(int argc, string argv[])
     }
 
     add_pairs();
-    lewo = 0;
-    prawo = pair_count - 1;
     sort_pairs();
     lock_pairs();
     print_winner();
@@ -155,49 +153,44 @@ void add_pairs(void)
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs()
 {
-    //QUICKSORT
-    if (prawo <= lewo)
+    for (int i = 0; i < pair_count; i++)
     {
-        return;
-    }
-
-    int i = lewo, j = prawo, pivot = preferences[pairs[(lewo + prawo) >> 1].winner][pairs[(lewo + prawo) >> 1].loser];
-
-    do
-    {
-        while (preferences[pairs[i].winner][pairs[i].loser] > pivot)
+        for (int j = 0; j < pair_count; j++)
         {
-            i++;
-        }
-
-        while (preferences[pairs[j].winner][pairs[j].loser] < pivot)
-        {
-            j--;
-        }
-
-        if (i <= j)
-        {
-            int win = pairs[i].winner, los = pairs[i].loser;
-            pairs[i].winner = pairs[j].winner;
-            pairs[i].loser = pairs[j].loser;
-            pairs[j].winner = win;
-            pairs[j].loser = los;
+           if (preferences[pairs[i].winner][pairs[i].loser] < preferences[pairs[j].winner][pairs[j].loser])
+           {
+               int win = pairs[i].winner, los = pairs[i].loser;
+                pairs[i].winner = pairs[j].winner;
+                pairs[i].loser = pairs[j].loser;
+                pairs[j].winner = win;
+                pairs[j].loser = los;
+           }
         }
     }
-    while (i <= j);
+    return;
+}
 
-    prawo = j;
-    lewo = i;
+void check_cycles(int n, int c)
+{
+    // n is the index for loser pairs
+    // c is the pair_count when it is passed in initially
 
-    if (lewo < j)
+    if (c == 0)
     {
-        sort_pairs(lewo, j);
+        cycle = true;
+        return; // cycle found!
     }
-    if (prawo > i)
+    // check if n is among winners in locked
+    else
     {
-        sort_pairs(i, prawo);
+        for (int i = 0; i < pair_count; i++)
+        {
+            if (locked[n][i] == true)
+            {
+                check_cycles(i, c - 1);
+            }
+        }
     }
-
     return;
 }
 
@@ -206,17 +199,11 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count - 1; i++)
     {
-        bool cykl = false;
+        cycle = false;
 
-        for (int j = 0; j < pair_count; j++)
-        {
-            if (locked[j][pairs[i].winner] == true)
-            {
-                cykl = true;
-            }
-        }
+        check_cycles(pairs[i].loser , i);
 
-        if (cykl == false)
+        if (cycle == false)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
