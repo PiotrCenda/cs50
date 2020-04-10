@@ -152,44 +152,44 @@ void add_pairs(void)
 void sort_pairs(int lewo, int prawo)
 {
     //QUICKSORT
-    if (prawo <= lewo)
-    {
-        return;
-    }
+    // if (prawo <= lewo)
+    // {
+    //     return;
+    // }
 
-    int i = lewo, j = prawo, pivot = preferences[pairs[(lewo + prawo) >> 1].winner][pairs[(lewo + prawo) >> 1].loser];
+    // int i = lewo, j = prawo, pivot = preferences[pairs[(lewo + prawo) >> 1].winner][pairs[(lewo + prawo) >> 1].loser];
 
-    do
-    {
-        while (preferences[pairs[i].winner][pairs[i].loser] < pivot)
-        {
-            i++;
-        }
+    // do
+    // {
+    //     while (preferences[pairs[i].winner][pairs[i].loser] < pivot)
+    //     {
+    //         i++;
+    //     }
 
-        while (preferences[pairs[j].winner][pairs[j].loser] < pivot)
-        {
-            j--;
-        }
+    //     while (preferences[pairs[j].winner][pairs[j].loser] < pivot)
+    //     {
+    //         j--;
+    //     }
 
-        if (i <= j)
-        {
-            int win = pairs[i].winner, los = pairs[i].loser;
-            pairs[i].winner = pairs[j].winner;
-            pairs[i].loser = pairs[j].loser;
-            pairs[j].winner = win;
-            pairs[j].loser = los;
-        }
-    }
-    while (i <= j);
+    //     if (i <= j)
+    //     {
+    //         int win = pairs[i].winner, los = pairs[i].loser;
+    //         pairs[i].winner = pairs[j].winner;
+    //         pairs[i].loser = pairs[j].loser;
+    //         pairs[j].winner = win;
+    //         pairs[j].loser = los;
+    //     }
+    // }
+    // while (i <= j);
 
-    if (lewo < j)
-    {
-        sort_pairs(lewo, j);
-    }
-    if (prawo > i)
-    {
-        sort_pairs(i, prawo);
-    }
+    // if (lewo < j)
+    // {
+    //     sort_pairs(lewo, j);
+    // }
+    // if (prawo > i)
+    // {
+    //     sort_pairs(i, prawo);
+    // }
 
     return;
 }
