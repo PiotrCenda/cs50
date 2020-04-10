@@ -204,7 +204,7 @@ void sort_pairs()
 // Lock pairs into the candidate graph in order, without creating cycles
 void lock_pairs(void)
 {
-    for (int i = pair_count - 1; i >= 0; i--)
+    for (int i = 0; i < pair_count - 1; i++)
     {
         bool cykl = false;
 
