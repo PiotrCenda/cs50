@@ -219,13 +219,18 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        validateLock(candidate_count);
+        locked[pairs[i].winner][pairs[i].loser] = true;
 
+        validateLock(candidate_count);
+        // if the validateLock function found a cycle we reverse the lock
         if (lock == false)
         {
-            locked[pairs[i].winner][pairs[i].loser] = true;
+            locked[pairs[i].winner][pairs[i].loser] = false;
         }
+
+        lock = true;
     }
+
     return;
 }
 
