@@ -25,13 +25,14 @@ pair pairs[MAX * (MAX - 1) / 2];
 
 int pair_count;
 int candidate_count;
-bool cycle = false;
+bool lock = true;
 
 // Function prototypes
 bool vote(int rank, string name, int ranks[]);
 void record_preferences(int ranks[]);
 void add_pairs(void);
 void sort_pairs();
+void validateLock(int j);
 void lock_pairs(void);
 void print_winner(void);
 void check_cycles(int n, int c);
@@ -170,28 +171,47 @@ void sort_pairs()
     return;
 }
 
-void check_cycles(int n, int c)
+void validateLock(int j)
 {
-    // n is the index for loser pairs
-    // c is the pair_count when it is passed in initially
-
-    if (c == 0)
+    if (j == 0)
     {
-        cycle = true;
-        return; // cycle found!
+        return;
     }
-    // check if n is among winners in locked
-    else
+
+    int r = 0;
+    bool rank[j];
+    for (int i = 0; i < j; i++)
     {
-        for (int i = 0; i < pair_count; i++)
+        rank[i] = false;
+    }
+
+    // checks all the submatrixes up to a single square using recursion
+    validateLock(j - 1);
+
+    for (int i = 0; i < j; i++)
+    {
+        for (int k = 0; k < j; k++)
         {
-            if (locked[n][i] == true)
+            if (locked[i][k] == true)
             {
-                check_cycles(i, c - 1);
+                rank[i] = true;
             }
         }
     }
-    return;
+
+    for (int i = 0; i < j; i++)
+    {
+        if (rank[i] == true)
+        {
+            r++;
+        }
+    }
+
+    // if the rank is max the lock is canceled
+    if (r == j)
+    {
+        lock = false;
+    }
 }
 
 // Lock pairs into the candidate graph in order, without creating cycles
@@ -199,11 +219,9 @@ void lock_pairs(void)
 {
     for (int i = 0; i < pair_count; i++)
     {
-        cycle = false;
+        validateLock(candidate_count);
 
-        check_cycles(pairs[i].loser, i);
-
-        if (cycle == false)
+        if (lock == false)
         {
             locked[pairs[i].winner][pairs[i].loser] = true;
         }
