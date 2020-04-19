@@ -139,52 +139,53 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                 {
                     tempx = x;
                     tempy = y;
-                    
+
                     if (y == 0)
                     {
                         tempx = tempx * 2;
                     }
-                    
+
                     if (x == 0)
                     {
                         tempy = tempy * 2;
                     }
-                    
+
                     GxR = GxR + tempx * copy[i + y][j + x].rgbtRed;
                     GxB = GxB + tempx * copy[i + y][j + x].rgbtBlue;
                     GxG = GxG + tempx * copy[i + y][j + x].rgbtGreen;
-                    
+
                     GyR = GyR + tempy * copy[i + y][j + x].rgbtRed;
                     GyB = GyB + tempy * copy[i + y][j + x].rgbtBlue;
                     GyG = GyG + tempy * copy[i + y][j + x].rgbtGreen;
-                
+
                 }
             }
-            
-            GxR = GxR / 9;
-            GxB = GxB / 9;
-            GxG = GxG / 9;
-                    
-            GyR = GyR / 9;
-            GyB = GyB / 9;
-            GyG = GyG / 9;
-            
 
-            image[i - 1][j - 1].rgbtBlue = round(sqrt(GxB * GxB + GyB * GyB));
-            image[i - 1][j - 1].rgbtGreen = round(sqrt(GxG * GxG + GyG * GyG));
-            image[i - 1][j - 1].rgbtRed = round(sqrt(GxR * GxR + GyR * GyR));
-            
-            if (image[i - 1][j - 1].rgbtBlue > 255)
+            if (round(sqrt(GxB * GxB + GyB * GyB)) > 255)
             {
                 image[i - 1][j - 1].rgbtBlue = 255;
             }
-            if (image[i - 1][j - 1].rgbtGreen > 255)
+            else
+            {
+                image[i - 1][j - 1].rgbtBlue = round(sqrt(GxB * GxB + GyB * GyB));
+            }
+
+            if (round(sqrt(GxG * GxG + GyG * GyG)) > 255)
             {
                 image[i - 1][j - 1].rgbtGreen = 255;
             }
-            if (image[i - 1][j - 1].rgbtRed > 255)
+            else
+            {
+                image[i - 1][j - 1].rgbtGreen = round(sqrt(GxG * GxG + GyG * GyG));
+            }
+
+            if (round(sqrt(GxR * GxR + GyR * GyR)) > 255)
             {
                 image[i - 1][j - 1].rgbtRed = 255;
+            }
+            else
+            {
+                image[i - 1][j - 1].rgbtRed = round(sqrt(GxR * GxR + GyR * GyR));
             }
 
         }
