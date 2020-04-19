@@ -140,12 +140,12 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
                     tempx = x;
                     tempy = y;
                     
-                    if (x == 0)
+                    if (y == 0)
                     {
                         tempx = tempx * 2;
                     }
                     
-                    if (y == 0)
+                    if (x == 0)
                     {
                         tempy = tempy * 2;
                     }
