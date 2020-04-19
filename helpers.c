@@ -1,15 +1,17 @@
 #include "helpers.h"
+#include <math.h>
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
-    int mean;
+    float mean;
 
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            mean = (int)(image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3;
+            mean = (image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3;
+            mean = round(mean);
             image[i][j].rgbtBlue = mean;
             image[i][j].rgbtGreen = mean;
             image[i][j].rgbtRed = mean;
@@ -22,15 +24,15 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
 // Convert image to sepia
 void sepia(int height, int width, RGBTRIPLE image[height][width])
 {
-    int sepiaRed, sepiaGreen, sepiaBlue;
+    float sepiaRed, sepiaGreen, sepiaBlue;
 
     for (int i = 0; i < height; i++)
     {
         for (int j = 0; j < width; j++)
         {
-            sepiaRed = (int)(0.189 * image[i][j].rgbtBlue + 0.769 * image[i][j].rgbtGreen + 0.393 * image[i][j].rgbtRed);
-            sepiaGreen = (int)(0.168 * image[i][j].rgbtBlue + 0.686 * image[i][j].rgbtGreen + 0.349 * image[i][j].rgbtRed);
-            sepiaBlue = (int)(0.131 * image[i][j].rgbtBlue + 0.534 * image[i][j].rgbtGreen + 0.272 * image[i][j].rgbtRed);
+            sepiaRed = round(0.189 * image[i][j].rgbtBlue + 0.769 * image[i][j].rgbtGreen + 0.393 * image[i][j].rgbtRed);
+            sepiaGreen = round(0.168 * image[i][j].rgbtBlue + 0.686 * image[i][j].rgbtGreen + 0.349 * image[i][j].rgbtRed);
+            sepiaBlue = round(0.131 * image[i][j].rgbtBlue + 0.534 * image[i][j].rgbtGreen + 0.272 * image[i][j].rgbtRed);
 
             if (sepiaRed > 255)
             {
@@ -85,7 +87,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE copy[height][width];
-    int meanR, meanB, meanG, number;
+    float meanR, meanB, meanG, number;
 
     for (int i = 0; i < height; i++)
     {
@@ -120,14 +122,12 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 }
             }
 
-            image[i][j].rgbtBlue = (int)(meanB / number);
-            image[i][j].rgbtGreen = (int)(meanG / number);
-            image[i][j].rgbtRed = (int)(meanR / number);
+            image[i][j].rgbtBlue = round(meanB / number);
+            image[i][j].rgbtGreen = round(meanG / number);
+            image[i][j].rgbtRed = round(meanR / number);
 
         }
     }
-
-
 
     return;
 }
