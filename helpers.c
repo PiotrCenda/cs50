@@ -115,9 +115,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     if (i + y >= 0 && i + y < height && j + x >= 0 && j + x < width)
                     {
                         number++;
-                        meanR = meanR + copy[i][j].rgbtRed;
-                        meanB = meanB + copy[i][j].rgbtBlue;
-                        meanG = meanG + copy[i][j].rgbtGreen;
+                        meanR = meanR + copy[i + y][j + x].rgbtRed;
+                        meanB = meanB + copy[i + y][j + x].rgbtBlue;
+                        meanG = meanG + copy[i + y][j + x].rgbtGreen;
                     }
                 }
             }
@@ -125,7 +125,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtBlue = round(meanB / number);
             image[i][j].rgbtGreen = round(meanG / number);
             image[i][j].rgbtRed = round(meanR / number);
-
+            
         }
     }
 
