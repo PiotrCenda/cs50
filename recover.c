@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 typedef uint8_t  BYTE;
 
@@ -9,7 +10,7 @@ int main(int argc, char *argv[])
     //check if input is alright
     if (argc != 2)
     {
-        fprintf("Usage: ./recover image\n");
+        fprintf(stderr, "Usage: ./recover image\n");
         return 1;
     }
 
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
 
     BYTE buffer[512];
     int image_number = 0;
-    char *outfile_name[8];
+    char outfile_name[8];
     FILE *outfile_pointer = NULL;
 
     while (true)
@@ -53,12 +54,12 @@ int main(int argc, char *argv[])
         // if we found jpg, we  open new file for writing
         if (if_jpg)
         {
-            sprintf(filename, "%03i.jpg", image_number);
-            outfile_pointer = fopen(filename, "w");
+            sprintf(outfile_name, "%03i.jpg", image_number);
+            outfile_pointer = fopen(outfile_name, "w");
         }
 
         // write anytime we have an open file
-        if (outptr != NULL)
+        if (outfile_pointer != NULL)
         {
             fwrite(buffer, sizeof(BYTE), bytes_read, outfile_pointer);
         }
