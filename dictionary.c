@@ -18,7 +18,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 5618;
+const unsigned int N = 152390;
 
 // Hash table
 node *table[N];
@@ -47,34 +47,44 @@ bool check(const char *word)
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
-    char litery[2];
-    litery[0] = tolower(word[0]);
-    litery[1] = tolower(word[1]);
-
     if (strlen(word) < 3)
     {
         return 0;
     }
     else if (strlen(word) > 10)
     {
-        return 5617;
+        return 152389;
+    }
+
+    char litery[3];
+    litery[0] = tolower(word[0]);
+    litery[1] = tolower(word[1]);
+    litery[2] = tolower(word[2]);
+
+    int h, i, j;
+    i = (int) litery[0] - 97;
+    j = (int) litery[1];
+    h = (int) litery[2];
+
+    if (h != 39)
+    {
+        h = h - 96;
     }
     else
     {
-        int i, j;
-        i = (int) litery[0] - 97;
-        j = (int) litery[1];
-        if (j != 39)
-        {
-            j = j - 96;
-        }
-        else
-        {
-            j = 27;
-        }
-
-        return (strlen(word) - 3) * 702 + i * 27 + j;
+        h = 27;
     }
+
+    if (j != 39)
+    {
+        j = j - 97;
+    }
+    else
+    {
+        j = 26;
+    }
+
+    return (strlen(word) - 3) * 18954 + i * 729 + j * 27 + h;
 }
 
 // Loads dictionary into memory, returning true if successful else false
