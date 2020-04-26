@@ -53,38 +53,17 @@ unsigned int hash(const char *word)
     }
     else if (strlen(word) > 10)
     {
-        return 152389;
-    }
-
-    char litery[3];
-    litery[0] = tolower(word[0]);
-    litery[1] = tolower(word[1]);
-    litery[2] = tolower(word[2]);
-
-    int h, i, j;
-    i = (int) litery[0] - 97;
-    j = (int) litery[1];
-    h = (int) litery[2];
-
-    if (h != 39)
-    {
-        h = h - 96;
+        return 1;
     }
     else
     {
-        h = 27;
-    }
+        int h, i, j;
+        i = (int) tolower(word[0])%27;
+        j = (int) tolower(word[1])%27;
+        h = (int) tolower(word[2])%27;
 
-    if (j != 39)
-    {
-        j = j - 97;
+        return (strlen(word) - 3) * 1000 + i * 100 + j * 10 + h;
     }
-    else
-    {
-        j = 26;
-    }
-
-    return (strlen(word) - 3) * 18954 + i * 729 + j * 27 + h;
 }
 
 // Loads dictionary into memory, returning true if successful else false
