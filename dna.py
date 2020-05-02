@@ -34,7 +34,7 @@ for key in dna_parts:
             data[key] = temp
 
         temp = 0
-        i +=1
+        i += 1
 
 with open(csv_name) as file:
     reader = csv.DictReader(file)
