@@ -22,12 +22,13 @@ with open(csv_name, "r") as file:
             first_name = full_name[0]
             middle_name = full_name[1]
             last_name = full_name[2]
-            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)", first_name, middle_name, last_name, house, year)
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)",
+                       first_name, middle_name, last_name, house, year)
 
         else:
             first_name = full_name[0]
             middle_name = None
             last_name = full_name[1]
-            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)", first_name, middle_name, last_name, house, year)
-
+            db.execute("INSERT INTO students (first, middle, last, house, birth) VALUES (?, ?, ?, ?, ?)",
+                       first_name, middle_name, last_name, house, year)
 

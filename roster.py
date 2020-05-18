@@ -2,7 +2,7 @@ from sys import argv, exit
 import csv
 from cs50 import SQL
 
-if len(argv) != 2:
+if (len(argv) != 2):
     print("Usage: python roster.py data.csv")
     exit(1)
 
