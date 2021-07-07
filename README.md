@@ -1,2 +1,2 @@
 # PiotrCenda
-Every branch represents different task from course.
+Every branch contains different task from CS50 course.
